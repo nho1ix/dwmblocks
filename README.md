@@ -1,4 +1,4 @@
-# dwmblocks
+# dwmblocks <img alt="Visits" align="right" src="https://badges.pufler.dev/visits/nho1ix/dwmblocks"/>
 
 Modular status bar for dwm written in c.
 

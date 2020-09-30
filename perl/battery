@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# Prints all batteries, their percentage remaining and an emoji corresponding
+# to charge status (🔌 for plugged up, 🔋 for discharging on battery, etc.).
+
+case $BLOCK_BUTTON in
+#	3) notify-send "🔋 Battery module" "🔋: discharging
+	3) notify-send " : Battery module" " : discharging
+ : not charging
+ : stagnant charge
+ : charging
+ : charged
+ : battery very low!
+- Scroll to change adjust xbacklight." ;;
+ 	4) xbacklight -inc 5 ;;
+ 	5) xbacklight -dec 5 ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+# acpi alternative
+# acpi | sed "s/Battery [0-9]: //;s/[Dd]ischarging, /🔋/;s/[Nn]ot charging, /🛑/;s/[Cc]harging, /🔌/;s/[Uu]nknown, /♻️/;s/[Ff]ull, /⚡/;s/ \(remaining\|until charged\)//"; exit
+
+# Loop through all attached batteries.
+for battery in /sys/class/power_supply/BAT1
+do
+	# Get its remaining capacity and charge status.
+	capacity=$(cat "$battery"/capacity 2>/dev/null) || break
+	#status=$(sed "s/[Dd]ischarging/   /;s/[Nn]ot charging/  /;s/[Cc]harging/   /;s/[Uu]nknown/♻️/;s/[Ff]ull/ /" "$battery"/status)
+
+	# If it is discharging and 25% or less, we will add a   as a warning.
+
+	 if [ "$capacity" -ge 76 ]; then
+	        status=$(sed "s/[Dd]ischarging/   /;s/[Nn]ot charging/  /;s/[Cc]harging/   /;s/[Uu]nknown//;s/[Ff]ull/ /" "$battery"/status)
+         
+       elif [ "$capacity" -ge 51 ]; then
+	        status=$(sed "s/[Dd]ischarging/   /;s/[Nn]ot charging/  /;s/[Cc]harging/   /;s/[Uu]nknown//;s/[Ff]ull/ /" "$battery"/status)
+
+       elif [ "$capacity" -ge 26 ]; then
+	        status=$(sed "s/[Dd]ischarging/   /;s/[Nn]ot charging/  /;s/[Cc]harging/   /;s/[Uu]nknown//;s/[Ff]ull/ /" "$battery"/status)
+                
+       elif [ "$capacity" -le 25 ]; then
+	        status=$(sed "s/[Dd]ischarging/   /;s/[Nn]ot charging/  /;s/[Cc]harging/   /;s/[Uu]nknown//;s/[Ff]ull/ /" "$battery"/status)
+
+         fi
+
+	printf "%s%s%s%% " "$status" "$warn" "$capacity"
+	unset warn
+done | sed 's/ *$//'

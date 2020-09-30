@@ -1,0 +1,8 @@
+#!/bin/sh
+# case $BLOCK_BUTTON in
+#   3) notify-send "  Disk Usage " "\
+#   Shows disk usage" ;;
+#   6) "$TERMINAL" -e "vim" "$0"
+# esac
+#df -h | awk '/encrypted/ {printf "  " $3}'
+df -h | grep encrypted | awk '{printf "  " $3 " : " $5}'
