@@ -30,7 +30,7 @@ esac
 
 #date "+%Y %b %d (%a) $icon%I:%M%p" # Original (Luke's) Format
 #date "+%a, %b %d $icon%I:%M:%S%p" # If you want seconds
-date "+%a, %b %d  $icon %I:%M%p"
+date "+%a, %b %d  $icon %I:%M %p"
 #	"00") icon="🕛 " ;;
 #	"01") icon="🕐 " ;;
 #	"02") icon="🕑 " ;;
