@@ -9,7 +9,12 @@ case $BLOCK_BUTTON in
  	6) "st" -e "vim" "$0" ;;
 esac
 
+# For only CPU usage %
 top -bn 1 | awk '/^%Cpu/ {print "CPU: " int($2 + $4 + $6)"%"}'
+
+# For both CPU usage % and temperature
+# echo -n $(top -bn 1 | awk '/^%Cpu/ {print "CPU: " int($2 + $4 + $6)"%"}' && sensors | awk '/Core 0/ {print $3}')
+
 #icon=" " 
 #cpu=$(top -bn 1 | awk '/^%Cpu/ {print int($2 + $4 + $6)"%"}') 
 #printf "%s\n" "^c#ffe32e^$icon^d^""$cpu"
