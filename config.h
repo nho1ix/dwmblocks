@@ -9,8 +9,8 @@ static const Block blocks[] = {
 	/* {"",	"price btc Bitcoin 💰",				0,	21}, */
 	/* {"",	"price lbc \"LBRY Token\" 📚",			0,	22}, */
 	{"",	"disk",	                             14400,	                19}, 
-	{"",	"memory",	                        60,             	14}, 
-        {"",	"cpu",		                         7,                      18}, 
+	{"",	"memory",	                         1,             	14}, 
+        {"",	"cpu",		                         1,                     18}, 
 	/* {"",	"moonphase",	                     18000,	                17}, */
 	/* {"",	"nettraf",	                         1,	                16}, */
 	{"",	"weather",	                     18000,	                5},

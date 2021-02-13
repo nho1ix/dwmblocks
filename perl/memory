@@ -10,6 +10,6 @@ case $BLOCK_BUTTON in
 esac
 
 #free --mebi | sed -n '2{p;q}' | awk '{printf ("   %2.2fGiB/%2.2fGiB\n", ( $3 / 1024), ($2 / 1024))}'
-free --mebi | sed -n '2{p;q}' | awk '{printf ("   %2.2fGiB\n", ( $3 / 1024), ($2 / 1024))}'
+free --mega | sed -n '2{p;q}' | awk '{printf ("   %2.2fGB\n", ( $3 / 1000), ($2 / 1000))}'
 
 # Brain Icon in case I ever need it 🧠 
